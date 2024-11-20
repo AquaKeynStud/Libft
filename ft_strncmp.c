@@ -6,7 +6,7 @@
 /*   By: arocca <arocca@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 15:21:40 by arocca            #+#    #+#             */
-/*   Updated: 2024/11/14 15:53:10 by arocca           ###   ########.fr       */
+/*   Updated: 2024/11/20 16:57:44 by arocca           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,20 +14,12 @@
 
 int	ft_strncmp(const char *s1, const char *s2, size_t n)
 {
-	size_t			i;
-	unsigned char	*a;
-	unsigned char	*b;
+	size_t	i;
 
 	i = 0;
-	a = (unsigned char *)s1;
-	b = (unsigned char *)s2;
-	while (i < n)
-	{
-		if (a[i] != b[i])
-			return (a[i] - b[i]);
-		if (!a[i] || !b[i])
-			break ;
+	while (i < n && s1[i] && s2[i] && s1[i] == s2[i])
 		i++;
-	}
-	return (0);
+	if (i == n)
+		return (0);
+	return ((unsigned char)s1[i] - (unsigned char)s2[i]);
 }

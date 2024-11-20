@@ -6,7 +6,7 @@
 /*   By: arocca <arocca@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/10 16:59:30 by arocca            #+#    #+#             */
-/*   Updated: 2024/11/19 15:44:54 by arocca           ###   ########.fr       */
+/*   Updated: 2024/11/20 17:00:59 by arocca           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,8 @@ char	**ft_split(char const *s, char c)
 	char			**res;
 	unsigned int	i;
 
+	if (!s)
+		return (NULL);
 	i = 0;
 	res = (char **)malloc(sizeof(char *) * (count_words(s, c) + 1));
 	if (!res)

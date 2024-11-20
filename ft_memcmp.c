@@ -6,7 +6,7 @@
 /*   By: arocca <arocca@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 16:03:20 by arocca            #+#    #+#             */
-/*   Updated: 2024/11/14 16:34:21 by arocca           ###   ########.fr       */
+/*   Updated: 2024/11/20 16:50:21 by arocca           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,13 +21,12 @@ int	ft_memcmp(const void *s1, const void *s2, size_t n)
 		return (0);
 	a = (unsigned char *)s1;
 	b = (unsigned char *)s2;
-	while (n)
+	while (n--)
 	{
 		if (*a != *b)
 			return (*a - *b);
 		a++;
 		b++;
-		n--;
 	}
 	return (0);
 }

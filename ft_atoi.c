@@ -6,12 +6,14 @@
 /*   By: arocca <arocca@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/08 13:39:20 by arocca            #+#    #+#             */
-/*   Updated: 2024/11/19 15:40:55 by arocca           ###   ########.fr       */
+/*   Updated: 2024/11/20 18:20:18 by arocca           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include <limits.h>
+
+
 
 int	ft_atoi(const char *nptr)
 {

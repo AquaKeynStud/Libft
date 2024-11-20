@@ -5,17 +5,19 @@
 #                                                     +:+ +:+         +:+      #
 #    By: arocca <arocca@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2024/11/19 11:09:59 by arocca            #+#    #+#              #
-#    Updated: 2024/11/19 15:47:43 by arocca           ###   ########.fr        #
+#    Created: 2024/11/20 17:20:04 by arocca            #+#    #+#              #
+#    Updated: 2024/11/20 18:56:39 by arocca           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-.PHONY : all clean fclean re bonus
+.PHONY : all clean fclean re bonus Makefile
 
 NAME = libft.a
 
-CC = cc
-CFLAGS = -Wall -Wextra -Werror -MMD -MP
+CC = gcc
+AR = ar rcs
+RM = rm -f
+CFLAGS = -Wall -Wextra -Werror
 
 SRC =	ft_atoi.c \
 		ft_bzero.c \
@@ -62,35 +64,41 @@ BSRC =	ft_lstadd_back.c \
 		ft_lstnew.c \
 		ft_lstsize.c \
 
+OBJ_D = obj
 
-OBJ = $(SRC:.c=.o)
-BOBJ = $(BSRC:.c=.o)
+$(shell mkdir -p $(OBJ_D))
 
-DEPS = $(OBJ:.o=.d)
-BDEPS = $(BOBJ:.o=.d)
+OBJ = $(SRC:%.c=$(OBJ_D)/%.o)
+BOBJ = $(BSRC:%.c=$(OBJ_D)/%.o)
 
 all : $(NAME)
 
 $(NAME): $(OBJ)
-	ar rcs $(NAME) $?
+	ar rcs $@ $?
+	@echo "\e[0;32mArchive créée avec succès ! 🧬\e[0m"
 
-%.o: %.c
+$(OBJ_D)/%.o: %.c libft.h
+	@mkdir -p $(OBJ_D)
 	$(CC) $(CFLAGS) -c $< -o $@
 
-bonus : $(NAME) $(BOBJ)
-	@if ar -t $(NAME) | grep -q -v -e "$(BOBJ)" && ar rcs $(NAME) $(BOBJ); then \
-		echo "libft.a is up to date"; \
-	fi
-
--include $(DEPS)
--include $(BDEPS)
-
 clean :
-	rm -f $(OBJ) $(BOBJ) $(DEPS) $(BDEPS)
+	$(RM) $(OBJ) $(BOBJ) $(DEPS) $(BDEPS)
+	rm -r $(OBJ_D)
+	@echo "\e[0;36mTout est nickel 🧹\e[0m"
 
 fclean :
 	$(MAKE) clean
-	rm -f $(NAME)
+	$(RM) $(NAME)
+	$(RM) .bonus
+	@echo "\e[0;34mJ'ai tout nettoyé :D 🧼\e[0m"
 
 re : 
 	$(MAKE) fclean all
+	@echo "\e[0;32mArchive recréée avec succès ! 🫡\e[0m"
+
+bonus: .bonus
+
+.bonus : $(NAME) $(BOBJ)
+	$(AR) $(NAME) $(BOBJ)
+	touch .bonus
+	@echo "\e[0;35mLes fichiers bonus ont bien étés ajoutés 📈\e[0m"
