@@ -1,16 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isprint.c                                       :+:      :+:    :+:   */
+/*   ft_memmove.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: arocca <arocca@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/06 16:37:11 by arocca            #+#    #+#             */
-/*   Updated: 2024/11/07 13:30:06 by arocca           ###   ########.fr       */
+/*   Created: 2024/11/06 16:37:19 by arocca            #+#    #+#             */
+/*   Updated: 2025/09/08 10:33:09 by arocca           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_isprint(int c)
+#include "libft.h"
+
+void	*ft_memmove(void *dest, const void *src, size_t n)
 {
-	return ((c >= ' ' && c <= '~'));
+	char	*nsrc;
+	char	*ndest;
+
+	if (!dest && !src)
+		return (NULL);
+	nsrc = (char *)src;
+	ndest = (char *)dest;
+	if (nsrc < ndest && ndest < nsrc + n)
+	{
+		ndest += n;
+		nsrc += n;
+		while (n--)
+			*(--ndest) = *(--nsrc);
+	}
+	else
+	{
+		while (n--)
+			*ndest++ = *nsrc++;
+	}
+	return (dest);
 }

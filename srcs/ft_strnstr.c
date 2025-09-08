@@ -1,24 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_bzero.c                                         :+:      :+:    :+:   */
+/*   ft_strnstr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: arocca <arocca@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/06 16:36:32 by arocca            #+#    #+#             */
-/*   Updated: 2024/11/19 11:10:08 by arocca           ###   ########.fr       */
+/*   Created: 2024/11/07 16:17:38 by arocca            #+#    #+#             */
+/*   Updated: 2025/09/08 10:34:59 by arocca           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_bzero(void *s, size_t n)
+char	*ft_strnstr(const char *big, const char *little, size_t len)
 {
-	char	*str;
 	size_t	i;
+	size_t	j;
 
-	str = (char *)s;
 	i = 0;
-	while (i < n)
-		str[i++] = '\0';
+	if (*little == '\0')
+		return ((char *)big);
+	while (big[i] && i + ft_strlen(little) <= len)
+	{
+		j = 0;
+		while (little[j] && big[i + j] == little[j])
+			j++;
+		if (!little[j])
+			return ((char *)(big + i));
+		i++;
+	}
+	return (0);
 }

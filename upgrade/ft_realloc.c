@@ -1,33 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strnstr.c                                       :+:      :+:    :+:   */
+/*   ft_realloc.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: arocca <arocca@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/07 16:17:38 by arocca            #+#    #+#             */
-/*   Updated: 2024/11/14 17:48:21 by arocca           ###   ########.fr       */
+/*   Created: 2025/04/12 17:44:56 by arocca            #+#    #+#             */
+/*   Updated: 2025/09/08 10:48:34 by arocca           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include <stdint.h>
+#include <stdlib.h>
 
-char	*ft_strnstr(const char *big, const char *little, size_t len)
+void	*ft_realloc(void *ptr, size_t old_size, size_t new_size)
 {
 	size_t	i;
-	size_t	j;
+	char	*new;
 
-	if (*little == '\0')
-		return ((char *)big);
 	i = 0;
-	while (big[i] && i + ft_strlen(little) <= len)
+	if (!new_size)
 	{
-		j = 0;
-		while (little[j] && big[i + j] == little[j])
-			j++;
-		if (!little[j])
-			return ((char *)(big + i));
+		free(ptr);
+		return (NULL);
+	}
+	if (old_size && new_size && new_size > SIZE_MAX - old_size)
+		return (NULL);
+	new = malloc(new_size);
+	if (!new)
+		return (NULL);
+	while (ptr && i < old_size && i < new_size)
+	{
+		new[i] = ((char *)ptr)[i];
 		i++;
 	}
-	return (0);
+	free(ptr);
+	return (new);
 }

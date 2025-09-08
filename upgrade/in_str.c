@@ -1,33 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strrchr.c                                       :+:      :+:    :+:   */
+/*   in_str.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: arocca <arocca@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/07 13:49:56 by arocca            #+#    #+#             */
-/*   Updated: 2024/11/19 15:45:26 by arocca           ###   ########.fr       */
+/*   Created: 2025/07/03 11:24:09 by arocca            #+#    #+#             */
+/*   Updated: 2025/09/08 10:50:33 by arocca           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+#include <stdbool.h>
 
-char	*ft_strrchr(const char *s, int c)
+bool	in_str(char c, char *str, bool verif_alnum)
 {
-	char			*str;
-	unsigned char	ucc;
-	char			*occur;
-
-	str = (char *)s;
-	ucc = (unsigned char)c;
-	occur = NULL;
+	if (verif_alnum && ft_isalnum(c))
+		return (true);
 	while (*str)
 	{
-		if (*str == ucc)
-			occur = str;
+		if (c == *str)
+			return (true);
 		str++;
 	}
-	if (ucc == '\0')
-		return (str);
-	return (occur);
+	return (false);
 }

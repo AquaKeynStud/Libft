@@ -1,0 +1,8 @@
+.subject.pdf
+.pdf
+.swp
+.vscode
+.build/
+.dep/
+.obj/
+libft.a

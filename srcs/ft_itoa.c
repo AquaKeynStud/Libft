@@ -6,7 +6,7 @@
 /*   By: arocca <arocca@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 10:20:40 by arocca            #+#    #+#             */
-/*   Updated: 2024/11/19 15:44:16 by arocca           ###   ########.fr       */
+/*   Updated: 2025/09/08 10:32:17 by arocca           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,8 +39,8 @@ static long	make_lpos(int n)
 char	*ft_itoa(int n)
 {
 	char	*str;
-	int		digit_nbr;
 	long	pos_nbr;
+	int		digit_nbr;
 
 	pos_nbr = make_lpos(n);
 	digit_nbr = count_digit(n) - (n > 0);

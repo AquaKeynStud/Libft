@@ -6,7 +6,7 @@
 /*   By: arocca <arocca@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/10 15:13:56 by arocca            #+#    #+#             */
-/*   Updated: 2024/11/19 15:45:30 by arocca           ###   ########.fr       */
+/*   Updated: 2025/09/08 10:35:24 by arocca           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,9 @@ static int	check_charset(const char *set, int c)
 
 char	*ft_strtrim(char const *s1, char const *set)
 {
+	unsigned int	len;
 	char			*res;
 	char			*start;
-	unsigned int	len;
 
 	len = 0;
 	if (!s1)

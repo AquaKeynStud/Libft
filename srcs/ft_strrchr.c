@@ -1,33 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strmapi.c                                       :+:      :+:    :+:   */
+/*   ft_strrchr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: arocca <arocca@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/12 11:47:01 by arocca            #+#    #+#             */
-/*   Updated: 2024/11/19 15:45:21 by arocca           ###   ########.fr       */
+/*   Created: 2024/11/07 13:49:56 by arocca            #+#    #+#             */
+/*   Updated: 2025/09/08 10:35:17 by arocca           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
+char	*ft_strrchr(const char *s, int c)
 {
+	unsigned char	ucc;
 	char			*str;
-	unsigned int	len;
-	unsigned int	i;
+	char			*occur;
 
-	len = ft_strlen(s);
-	i = 0;
-	str = (char *)malloc((sizeof(char) * len) + 1);
-	if (!str)
-		return (NULL);
-	str[len] = '\0';
-	while (i < len)
+	occur = NULL;
+	str = (char *)s;
+	ucc = (unsigned char)c;
+	while (*str)
 	{
-		str[i] = f(i, s[i]);
-		i++;
+		if (*str == ucc)
+			occur = str;
+		str++;
 	}
-	return (str);
+	if (ucc == '\0')
+		return (str);
+	return (occur);
 }

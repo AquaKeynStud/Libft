@@ -6,7 +6,7 @@
 /*   By: arocca <arocca@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/10 16:59:30 by arocca            #+#    #+#             */
-/*   Updated: 2024/11/20 17:00:59 by arocca           ###   ########.fr       */
+/*   Updated: 2025/09/08 10:33:54 by arocca           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,9 +44,9 @@ static int	count_words(char const *s, char c)
 
 static char	*split_word(char const *s, char c)
 {
-	char			*word;
-	unsigned int	len;
 	unsigned int	i;
+	unsigned int	len;
+	char			*word;
 
 	len = 0;
 	while (s[len] && s[len] != c)
@@ -66,12 +66,12 @@ static char	*split_word(char const *s, char c)
 
 char	**ft_split(char const *s, char c)
 {
-	char			**res;
 	unsigned int	i;
+	char			**res;
 
+	i = 0;
 	if (!s)
 		return (NULL);
-	i = 0;
 	res = (char **)malloc(sizeof(char *) * (count_words(s, c) + 1));
 	if (!res)
 		return (NULL);
