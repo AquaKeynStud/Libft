@@ -140,7 +140,7 @@ else
 TOTAL_FILES := $(words $(LST_SRCS))
 endif
 
-START_TIME := $(shell date +%s)
+START_TIME	:=	$(shell date +%s%3N)
 
 # ╭━━━━━━━━━━━━══════════╕出 ❖ RULES ❖ 力╒═══════════━━━━━━━━━━━━╮ #
 
@@ -148,18 +148,20 @@ all: $(NAME)
 
 $(NAME): $(OBJ) $(INC) makefile | $(D_BLD) $(D_OBJ) $(D_DEP) makefile
 	@$(AR) $@ $?
-	@END_TIME=$$(date +%s);					\
-	ELAPSED=$$((END_TIME - $(START_TIME)));	\
-	echo "$(PURPLE)$(BOLD)\n🪼 $(NAME) created successfully in $${ELAPSED}s 🪼$(RESET)"
+	@END_TIME=$$(date +%s%3N);						\
+	ELAPSED=$$(expr $$END_TIME - $(START_TIME));		\
+	ELAPSED_SEC=$$(echo "scale=2; $$ELAPSED / 1000" | bc);	\
+	printf "$(PURPLE)$(BOLD)\n🪼 $(NAME) created successfully in %0.2fs 🪼$(RESET)\n" $$ELAPSED_SEC
 
 bonus: $(D_BLD)bonus
 
 $(D_BLD)bonus: $(OBJ) $(BOBJ) makefile | $(D_BLD) $(D_OBJ) $(D_DEP) makefile
 	@$(AR) $@ $?
 	@touch $(D_OBJ).bonus
-	@END_TIME=$$(date +%s);					\
-	ELAPSED=$$((END_TIME - $(START_TIME)));	\
-	echo "$(PURPLE)$(BOLD)\n🪼 $(NAME) created successfully with bonuses in $${ELAPSED}s 🪼$(RESET)"
+	@END_TIME=$$(date +%s%3N);						\
+	ELAPSED=$$(expr $$END_TIME - $(START_TIME));		\
+	ELAPSED_SEC=$$(echo "scale=2; $$ELAPSED / 1000" | bc);	\
+	printf "$(PURPLE)$(BOLD)\n🪼 $(NAME) created successfully with bonuses in %0.2fs 🪼$(RESET)\n" $$ELAPSED_SEC
 
 $(D_BLD):
 	@$(MKDIR) $@
