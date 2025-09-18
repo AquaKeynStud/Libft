@@ -6,7 +6,7 @@
 /*   By: arocca <arocca@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/09 15:04:58 by arocca            #+#    #+#             */
-/*   Updated: 2025/09/07 23:14:50 by arocca           ###   ########.fr       */
+/*   Updated: 2025/09/17 00:18:47 by arocca           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,6 @@ char		*ft_strjoin(char const *s1, char const *s2);
 char		*check_line(char **line, char **temp, char **newline);
 
 char		*get_next_line(int fd);
-char		*update_buffer(int fd, char buffer[], char **node_buffer);
-char		*extract_newline(char **newline);
 t_fd_list	*get_node(t_fd_list **head, int fd);
 char		*free_node(t_fd_list **head, int fd);
 

@@ -10,7 +10,7 @@ CC				:=	cc
 
 AR				:=	ar rcs
 
-CFLAGS			:= -Wall -Wextra -Werror -MMD
+CFLAGS			:= -Wall -Wextra -Werror -MMD -g3
 
 RM				:=	rm -rf
 
@@ -157,7 +157,7 @@ bonus: $(D_BLD)bonus
 
 $(D_BLD)bonus: $(OBJ) $(BOBJ) makefile | $(D_BLD) $(D_OBJ) $(D_DEP) makefile
 	@$(AR) $@ $?
-	@touch $(D_OBJ).bonus
+	@touch $(D_BLD)bonus
 	@END_TIME=$$(date +%s%3N);						\
 	ELAPSED=$$(expr $$END_TIME - $(START_TIME));		\
 	ELAPSED_SEC=$$(echo "scale=2; $$ELAPSED / 1000" | bc);	\

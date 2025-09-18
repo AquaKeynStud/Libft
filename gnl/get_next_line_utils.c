@@ -6,7 +6,7 @@
 /*   By: arocca <arocca@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/09 15:07:53 by arocca            #+#    #+#             */
-/*   Updated: 2025/09/07 23:11:36 by arocca           ###   ########.fr       */
+/*   Updated: 2025/09/17 00:17:37 by arocca           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,24 +106,24 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	return (start);
 }
 
-char	*check_line(char **line, char **temp, char **newline)
-{
-	if (!line || (!*line && !*temp))
-	{
-		free(*line);
-		free(*temp);
-		*line = NULL;
-		*temp = NULL;
-		free(*newline);
-		*newline = NULL;
-		return (NULL);
-	}
-	free(*newline);
-	*newline = *temp;
-	if (!*newline || !**newline)
-	{
-		free(*newline);
-		*newline = NULL;
-	}
-	return (*line);
-}
+// char	*check_line(char **line, char **temp, char **newline)
+// {
+// 	if (!line || (!*line && !*temp))
+// 	{
+// 		free(*line);
+// 		free(*temp);
+// 		free(*newline);
+// 		*line = NULL;
+// 		*temp = NULL;
+// 		*newline = NULL;
+// 		return (NULL);
+// 	}
+// 	free(*newline);
+// 	*newline = *temp;
+// 	if (!*newline || !**newline)
+// 	{
+// 		free(*newline);
+// 		*newline = NULL;
+// 	}
+// 	return (*line);
+// }

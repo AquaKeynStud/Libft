@@ -6,11 +6,12 @@
 /*   By: arocca <arocca@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/09 15:00:37 by arocca            #+#    #+#             */
-/*   Updated: 2025/09/07 23:11:30 by arocca           ###   ########.fr       */
+/*   Updated: 2025/09/17 00:19:17 by arocca           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdio.h>
+#include <stdbool.h>
 #include "get_next_line.h"
 
 t_fd_list	*get_node(t_fd_list **head, int fd)
@@ -50,7 +51,8 @@ char	*free_node(t_fd_list **head, int fd)
 				previous -> next = current -> next;
 			else
 				*head = current -> next;
-			free(current -> buffer);
+			if (current -> buffer)
+				free(current -> buffer);
 			free(current);
 			current = NULL;
 			return (NULL);
@@ -61,66 +63,63 @@ char	*free_node(t_fd_list **head, int fd)
 	return (NULL);
 }
 
-char	*update_buffer(int fd, char buffer[], char **node_buffer)
+static bool	update_buffer(int fd, char buffer[], t_fd_list *node)
 {
+	char	*tmp;
 	int		bytes_read;
-	char	*temp;
 
 	bytes_read = 1;
-	while (bytes_read && !ft_strchr(*node_buffer, '\n'))
+	while (bytes_read && !ft_strchr(node->buffer, '\n'))
 	{
 		bytes_read = read(fd, buffer, BUFFER_SIZE);
 		if (bytes_read == -1)
-		{
-			free(*node_buffer);
-			*node_buffer = NULL;
-			return (NULL);
-		}
+			return (false);
 		buffer[bytes_read] = '\0';
-		temp = *node_buffer;
-		*node_buffer = ft_strjoin(*node_buffer, buffer);
-		if (!*node_buffer)
-		{
-			free(*node_buffer);
-			return (NULL);
-		}
-		free(temp);
+		tmp = ft_strjoin(node->buffer, buffer);
+		if (!tmp)
+			return (false);
+		free(node->buffer);
+		node->buffer = tmp;
 	}
-	return (*node_buffer);
+	return (true);
 }
 
-char	*extract_newline(char **node_buffer)
+static char	*extract_newline(t_fd_list *head, t_fd_list *node)
 {
-	char	*endline_pos;
+	char	*tmp;
 	char	*line;
-	char	*temp;
+	char	*endline_pos;
 
-	if (!*node_buffer || !**node_buffer)
+	if (!head || !node || !node->buffer || !*node->buffer)
 		return (NULL);
-	endline_pos = ft_strchr(*node_buffer, '\n');
-	if (endline_pos || **node_buffer)
+	endline_pos = ft_strchr(node->buffer, '\n');
+	if (endline_pos || *node->buffer)
 	{
 		if (endline_pos)
 		{
-			line = ft_substr(*node_buffer, 0, (endline_pos - *node_buffer) + 1);
-			temp = ft_strdup(endline_pos + 1);
+			line = ft_substr(node->buffer, 0, (endline_pos - node->buffer) + 1);
+			tmp = ft_strdup(endline_pos + 1);
 		}
 		else
 		{
-			line = ft_strdup(*node_buffer);
-			temp = NULL;
+			line = ft_strdup(node->buffer);
+			tmp = NULL;
 		}
-		return (check_line(&line, &temp, node_buffer));
+		if (!line || (!*line && !*tmp))
+			return (free_node(&head, node->fd));
+		free(node->buffer);
+		node->buffer = tmp;
+		return (line);
 	}
-	return (NULL);
+	return (free_node(&head, node->fd));
 }
 
 char	*get_next_line(int fd)
 {
-	static t_fd_list	*head = NULL;
+	char				*line;
 	char				*buffer;
 	t_fd_list			*node_fd;
-	char				*line;
+	static t_fd_list	*head = NULL;
 
 	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (NULL);
@@ -132,12 +131,12 @@ char	*get_next_line(int fd)
 		return (NULL);
 	if (node_fd -> buffer == NULL)
 		node_fd -> buffer = ft_strdup("");
-	if (!node_fd -> buffer || !update_buffer(fd, buffer, &node_fd->buffer))
+	if (!node_fd -> buffer || !update_buffer(fd, buffer, node_fd))
 	{
 		free(buffer);
 		return (free_node(&head, fd));
 	}
-	line = extract_newline(&node_fd -> buffer);
+	line = extract_newline(head, node_fd);
 	free(buffer);
 	if (line)
 		return (line);
