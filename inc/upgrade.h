@@ -6,7 +6,7 @@
 /*   By: arocca <arocca@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/18 16:54:58 by arocca            #+#    #+#             */
-/*   Updated: 2025/09/18 17:46:45 by arocca           ###   ########.fr       */
+/*   Updated: 2025/09/18 17:48:38 by arocca           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define UPGRADE_H
 
 /* -- Includes -- */
+# include <stdlib.h>
 # include <stdbool.h>
 
 /* -- Functions -- */
