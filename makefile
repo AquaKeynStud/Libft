@@ -113,9 +113,12 @@ LST_UPG	=	in_str.c				\
 			ft_trim.c				\
 			ft_atoll.c				\
 			split_str.c				\
-			ft_realloc.c
+			ft_isspace.c			\
+			ft_realloc.c			\
+			is_empty_line.c
 
 LST_INC	=	libft.h					\
+			upgrade.h				\
 			ft_printf.h				\
 			get_next_line.h
 

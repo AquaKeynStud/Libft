@@ -1,26 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   is_empty_line.c                                    :+:      :+:    :+:   */
+/*   upgrade.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: arocca <arocca@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/09/18 16:40:02 by arocca            #+#    #+#             */
-/*   Updated: 2025/09/18 16:56:29 by arocca           ###   ########.fr       */
+/*   Created: 2025/09/18 16:54:58 by arocca            #+#    #+#             */
+/*   Updated: 2025/09/18 16:55:57 by arocca           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "upgrade.h"
+#ifndef UPGRADE_H
+# define UPGRADE_H
 
-int	is_empty_line(char *line)
-{
-	if (!line || !*line)
-		return (1);
-	while (*line)
-	{
-		if (!ft_isspace(*line) && *line != '\n')
-			return (0);
-		line++;
-	}
-	return (1);
-}
+/* -- Functions -- */
+int	ft_isspace(int c);
+
+#endif
