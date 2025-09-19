@@ -112,9 +112,11 @@ LST_GNL	=	get_next_line.c			\
 LST_UPG	=	in_str.c				\
 			ft_trim.c				\
 			ft_atoll.c				\
+			get_word.c				\
 			split_str.c				\
 			ft_isspace.c			\
 			ft_realloc.c			\
+			double_free.c			\
 			is_empty_line.c
 
 LST_INC	=	libft.h					\
@@ -159,7 +161,7 @@ $(NAME): $(OBJ) $(INC) makefile | $(D_BLD) $(D_OBJ) $(D_DEP) makefile
 bonus: $(D_BLD)bonus
 
 $(D_BLD)bonus: $(OBJ) $(BOBJ) makefile | $(D_BLD) $(D_OBJ) $(D_DEP) makefile
-	@$(AR) $@ $?
+	@$(AR) $(NAME) $?
 	@touch $(D_BLD)bonus
 	@END_TIME=$$(date +%s%3N);						\
 	ELAPSED=$$(expr $$END_TIME - $(START_TIME));		\

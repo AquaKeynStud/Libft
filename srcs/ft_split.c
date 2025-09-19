@@ -25,7 +25,7 @@ static char	**free_split(char	**tab)
 	return (NULL);
 }
 
-static int	count_words(char const *s, char c)
+static int	count_word(char const *s, char c)
 {
 	unsigned int	count;
 
@@ -72,7 +72,7 @@ char	**ft_split(char const *s, char c)
 	i = 0;
 	if (!s)
 		return (NULL);
-	res = (char **)malloc(sizeof(char *) * (count_words(s, c) + 1));
+	res = (char **)malloc(sizeof(char *) * (count_word(s, c) + 1));
 	if (!res)
 		return (NULL);
 	while (*s)

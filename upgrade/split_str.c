@@ -62,7 +62,7 @@ static char	*split_word(char *str, char *charset)
 	return (word);
 }
 
-char	**ft_split_str(char *str, char *charset)
+char	**split_str(char *str, char *charset)
 {
 	char	**res;
 	int		i;
