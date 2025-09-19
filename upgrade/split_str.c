@@ -23,7 +23,7 @@ static int	is_sep(char c, char *charset)
 	return (0);
 }
 
-static int	count_words(char *str, char *charset)
+int	count_words(char *str, char *charset)
 {
 	int	i;
 
