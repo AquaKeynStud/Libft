@@ -23,6 +23,7 @@ int		is_empty_line(char *line);
 int		ft_atoll(const char *nptr);
 char	*get_word(char *str, int pos);
 void	ft_trim(char **str, char *set);
+int		strict_pos_atoi(const char *nptr);
 int		count_words(char *str, char *charset);
 char	**split_str(char *str, char *charset);
 bool	in_str(char c, char *str, bool verif_alnum);

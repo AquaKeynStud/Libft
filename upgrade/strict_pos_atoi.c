@@ -1,34 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   double_free.c                                      :+:      :+:    :+:   */
+/*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: arocca <arocca@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/09/18 18:33:31 by arocca            #+#    #+#             */
-/*   Updated: 2025/09/20 01:32:38 by arocca           ###   ########.fr       */
+/*   Created: 2024/11/08 13:39:20 by arocca            #+#    #+#             */
+/*   Updated: 2025/09/07 23:14:29 by arocca           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stddef.h>
-#include <stdlib.h>
+#include "libft.h"
+#include <limits.h>
 
-void	double_free(void **ptr, size_t size_if_not_null_term)
+int	strict_pos_atoi(const char *nptr)
 {
-	size_t	i;
+	unsigned long long	res;
 
-	i = 0;
-	if (!ptr)
-		return ;
-	if (!size_if_not_null_term)
+	res = 0;
+	if (!nptr || !*nptr || ((*nptr > '9' || *nptr < '0') && *nptr != '+'))
+		return (-1);
+	if (*nptr == '+')
+		nptr++;
+	while (*nptr >= '0' && *nptr <= '9')
 	{
-		while (ptr[i])
-			free(ptr[i++]);
+		res = res * 10 + (*nptr++ - '0');
+		if (res > INT_MAX)
+			return (-1);
 	}
-	else
-	{
-		while (i < size_if_not_null_term)
-			free(ptr[i++]);
-	}
-	free(ptr);
+	if (*nptr != '\0')
+		return (-1);
+	return ((int)res);
 }

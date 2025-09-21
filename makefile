@@ -117,7 +117,8 @@ LST_UPG	=	in_str.c				\
 			ft_isspace.c			\
 			ft_realloc.c			\
 			double_free.c			\
-			is_empty_line.c
+			is_empty_line.c			\
+			strict_pos_atoi.c
 
 LST_INC	=	libft.h					\
 			upgrade.h				\
