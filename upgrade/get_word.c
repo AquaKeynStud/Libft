@@ -6,7 +6,7 @@
 /*   By: arocca <arocca@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/19 14:42:32 by arocca            #+#    #+#             */
-/*   Updated: 2025/09/19 14:47:31 by arocca           ###   ########.fr       */
+/*   Updated: 2025/09/22 16:18:22 by arocca           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,9 @@ char	*get_word(char *str, int pos)
 
 	if (!str || pos < 0)
 		return (NULL);
-	if (count_words(str, " \t") < pos)
-		pos = count_words(str, " \t");
-	split = split_str(str, " \t");
+	if (count_words(str, " \t\n\v\f\r") < pos)
+		pos = count_words(str, " \t\n\v\f\r");
+	split = split_str(str, " \t\n\v\f\r");
 	if (!split || !*split)
 		return (NULL);
 	if (split[pos])

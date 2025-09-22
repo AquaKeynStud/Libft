@@ -6,7 +6,7 @@
 /*   By: arocca <arocca@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 13:21:11 by arocca            #+#    #+#             */
-/*   Updated: 2025/09/18 17:44:05 by arocca           ###   ########.fr       */
+/*   Updated: 2025/09/22 16:18:51 by arocca           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,9 @@
 # define LIBFT_H
 
 # include <stdlib.h>
-# include <upgrade.h>
+# include "upgrade.h"
+# include "ft_printf.h"
+# include "get_next_line.h"
 
 typedef struct s_list
 {
