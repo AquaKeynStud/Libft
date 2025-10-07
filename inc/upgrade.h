@@ -6,7 +6,7 @@
 /*   By: arocca <arocca@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/18 16:54:58 by arocca            #+#    #+#             */
-/*   Updated: 2025/09/18 17:48:38 by arocca           ###   ########.fr       */
+/*   Updated: 2025/10/07 16:55:10 by arocca           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@
 int		ft_isspace(int c);
 int		is_empty_line(char *line);
 int		ft_atoll(const char *nptr);
+int		count_char(char *s, char c);
 char	*get_word(char *str, int pos);
 void	ft_trim(char **str, char *set);
 int		strict_pos_atoi(const char *nptr);

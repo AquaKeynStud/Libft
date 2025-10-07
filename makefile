@@ -116,6 +116,7 @@ LST_UPG	=	in_str.c				\
 			split_str.c				\
 			ft_isspace.c			\
 			ft_realloc.c			\
+			count_char.c			\
 			double_free.c			\
 			is_empty_line.c			\
 			strict_pos_atoi.c
