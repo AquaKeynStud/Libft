@@ -6,10 +6,11 @@
 /*   By: arocca <arocca@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/09 15:00:37 by arocca            #+#    #+#             */
-/*   Updated: 2025/09/17 00:19:17 by arocca           ###   ########.fr       */
+/*   Updated: 2025/10/08 10:44:36 by arocca           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "libft.h"
 #include <stdio.h>
 #include <stdbool.h>
 #include "get_next_line.h"
@@ -92,6 +93,7 @@ static char	*extract_newline(t_fd_list *head, t_fd_list *node)
 
 	if (!head || !node || !node->buffer || !*node->buffer)
 		return (NULL);
+	tmp = NULL;
 	endline_pos = ft_strchr(node->buffer, '\n');
 	if (endline_pos || *node->buffer)
 	{
@@ -101,10 +103,7 @@ static char	*extract_newline(t_fd_list *head, t_fd_list *node)
 			tmp = ft_strdup(endline_pos + 1);
 		}
 		else
-		{
 			line = ft_strdup(node->buffer);
-			tmp = NULL;
-		}
 		if (!line || (!*line && !*tmp))
 			return (free_node(&head, node->fd));
 		free(node->buffer);
@@ -122,7 +121,7 @@ char	*get_next_line(int fd)
 	static t_fd_list	*head = NULL;
 
 	if (fd < 0 || BUFFER_SIZE <= 0)
-		return (NULL);
+		return (free_get_next_line(&head));
 	buffer = (char *)malloc(sizeof(char) * (BUFFER_SIZE + 1));
 	if (!buffer)
 		return (NULL);

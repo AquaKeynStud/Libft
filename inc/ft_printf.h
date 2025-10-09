@@ -6,7 +6,7 @@
 /*   By: arocca <arocca@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/15 14:31:01 by arocca            #+#    #+#             */
-/*   Updated: 2025/09/07 23:13:39 by arocca           ###   ########.fr       */
+/*   Updated: 2025/10/08 11:37:15 by arocca           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,10 @@
 
 int		parse_args(char *s, va_list *args, ssize_t *total_len);
 int		mandatory_parser(char c, va_list *args, ssize_t *total_len, int err);
-int		ft_printf(const char *format, ...)
-		__attribute__ ((format (printf, 1, 2)));
-int		ft_dprintf(int fd, const char *format, ...)
-		__attribute__ ((format (printf, 2, 3)));
+int		ft_printf(const char *format, ...);
+		// __attribute__ ((format (printf, 1, 2)));
+int		ft_dprintf(int fd, const char *format, ...);
+		// __attribute__ ((format (printf, 2, 3)));
 
 char	check_conv(char c);
 void	format_update(char **s, ssize_t	*i, ssize_t *len, va_list *args);

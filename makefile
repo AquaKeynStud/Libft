@@ -106,8 +106,8 @@ LST_PTF	=	main.c					\
 			bonus_printers_spxX.c	\
 			bonus_error_handler.c
 
-LST_GNL	=	get_next_line.c			\
-			get_next_line_utils.c
+LST_GNL	=	gnl_free.c				\
+			get_next_line.c
 
 LST_UPG	=	in_str.c				\
 			ft_trim.c				\
